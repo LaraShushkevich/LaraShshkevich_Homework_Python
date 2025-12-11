@@ -14,12 +14,14 @@ wait.until(
         EC.presence_of_all_elements_located((By.CSS_SELECTOR, "img"))
     )
 
-images = WebDriverWait(driver, 20).until(
+elements = WebDriverWait(driver, 20).until(
         EC.presence_of_all_elements_located((By.CSS_SELECTOR, "#award"))
     )
 
-image = driver.find_element(By.CSS_SELECTOR, "#award")
+images = driver.find_elements(By.CSS_SELECTOR, "img")
+# l = len(images)
+# print(l)
 
-print(image.get_attribute("src"))
+print(images[2].get_attribute("src"))
     
 driver.quit()
