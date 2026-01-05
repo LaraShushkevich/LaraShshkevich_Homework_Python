@@ -4,12 +4,11 @@ import pytest
 import requests
 import uuid
 
-base_url = "https://ru.yougile.com/api-v2/projects/"
+base_url = "https://ru.yougile.com/api-v2/projects"
 
 load_dotenv()
 
 api_key = os.getenv('API_key')
-company_id = os.getenv('companyID')
 
 
 @pytest.fixture
@@ -66,7 +65,7 @@ def test_get_project_positive(headers, project_id):
     #     "Authorization": f"Bearer {api_key}",
     #     "Content-Type": "application/json"
     # }
-    response = requests.get(base_url + str(project_id), headers=headers)
+    response = requests.get(base_url + '/' + str(project_id), headers=headers)
     assert response.status_code == 200
     assert response.json()["id"] == project_id
 
@@ -81,15 +80,15 @@ def test_update_project_positive(headers, project_id):
     new_title = "Updated Title"
     project = {"title": new_title}
     response = requests.put(
-        base_url + str(project_id), json=project, headers=headers)
+        base_url + '/' + str(project_id), json=project, headers=headers)
     assert response.status_code == 200
 
     get_resp = requests.get(
-        base_url + str(project_id), headers=headers)
+        base_url + '/' + str(project_id), headers=headers)
     assert get_resp.json()["title"] == new_title
 
 
-def test_update_project_negative_empty_body(headers, project_id):
+def test_update_project_negative_without_id(headers, project_id):
     response = requests.put(
-        base_url + str(project_id), headers=headers)
-    assert response.status_code == 200
+        base_url, headers=headers)
+    assert response.status_code == 404
