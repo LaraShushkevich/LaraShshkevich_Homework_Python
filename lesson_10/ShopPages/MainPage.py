@@ -7,7 +7,7 @@ class MainPage:
     """Это класс для главной страницы магазина. Он содержит методы
              для добавления товаров в корзину и перехода в корзину"""
 
-    def __init__(self, driver: WebDriver):
+    def __init__(self, driver: WebDriver) -> None:
         self.driver = driver
         self.driver.get("https://www.saucedemo.com/inventory.html")
         self.driver.implicitly_wait(5)

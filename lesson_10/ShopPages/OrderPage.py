@@ -10,7 +10,7 @@ class OrderPage:
      для заполнения формы данными (имя, фамилия, почтовый индекс)
      и проверки итоговой стоимости"""
 
-    def __init__(self, driver: WebDriver):
+    def __init__(self, driver: WebDriver) -> None:
         self.driver = driver
         self.driver.get("https://www.saucedemo.com/checkout-step-one.html")
         self.driver.implicitly_wait(5)

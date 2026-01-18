@@ -7,7 +7,7 @@ class LoginPage:
     """Это класс для страницы авторизации. Он содержит методы
          для ввода логина и пароля, а также для нажатия кнопки входа"""
 
-    def __init__(self, driver: WebDriver):
+    def __init__(self, driver: WebDriver) -> None:
         self.driver = driver
         self.driver.get("https://www.saucedemo.com/")
         self.driver.implicitly_wait(5)
